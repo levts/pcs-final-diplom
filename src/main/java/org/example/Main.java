@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-
 public class Main {
     public static void main(String[] args) throws Exception {
 
@@ -15,11 +14,7 @@ public class Main {
 
         try (ServerSocket serverSocket = new ServerSocket(ServerConfig.PORT)) { // стартуем сервер один(!) раз
             while (true) { // в цикле(!) принимаем подключения
-                try (
-                        Socket socket = serverSocket.accept();
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true)
-                ) {
+                try (Socket socket = serverSocket.accept(); BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream())); PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
                     System.out.println("подключились");
                     String word = in.readLine();
                     System.out.println("получили слово " + word);
